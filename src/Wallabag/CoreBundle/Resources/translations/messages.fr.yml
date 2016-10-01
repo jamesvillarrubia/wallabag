@@ -88,6 +88,13 @@ config:
         name_label: 'Nom'
         email_label: 'Adresse e-mail'
         twoFactorAuthentication_label: 'Double authentification'
+    reset:
+        title: Réinitialisation (attention danger !)
+        description: En cliquant sur les boutons ci-dessous vous avez la possibilité de supprimer certaines informations de votre compte. Attention, ces actions sont IRREVERSIBLES !
+        annotations: Supprimer TOUTES les annotations
+        tags: Supprimer TOUS les tags
+        entries: Supprimer TOUS les articles
+        confirm: Êtes-vous vraiment vraiment sûr? (C'EST IRREVERSIBLE)
     form_password:
         old_password_label: 'Mot de passe actuel'
         new_password_label: 'Nouveau mot de passe'
@@ -457,6 +464,9 @@ flashes:
             tagging_rules_deleted: 'Règle supprimée'
             user_added: 'Utilisateur "%username%" ajouté'
             rss_token_updated: 'Jeton RSS mis à jour'
+            annotations_reset: Annotations supprimées
+            tags_reset: Tags supprimés
+            entries_reset: Articles supprimés
     entry:
         notice:
             entry_already_saved: 'Article déjà sauvergardé le %date%'

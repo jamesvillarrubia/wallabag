@@ -88,6 +88,13 @@ config:
         name_label: 'Nazwa'
         email_label: 'Adres email'
         twoFactorAuthentication_label: 'Autoryzacja dwuetapowa'
+    reset:
+        # title: Reset area (a.k.a danger zone)
+        # description: By hiting buttons below you'll have ability to remove some informations from your account. Be aware that these actions are IRREVERSIBLE.
+        # annotations: Remove ALL annotations
+        # tags: Remove ALL tags
+        # entries: Remove ALL entries
+        # confirm: Are you really really sure? (THIS CAN'T BE UNDONE)
     form_password:
         old_password_label: 'Stare hasło'
         new_password_label: 'Nowe hasło'
@@ -457,6 +464,9 @@ flashes:
             tagging_rules_deleted: 'Reguła tagowania usunięta'
             user_added: 'Użytkownik "%username%" dodany'
             rss_token_updated: 'Token kanału RSS zaktualizowany'
+            # annotations_reset: Annotations reset
+            # tags_reset: Tags reset
+            # entries_reset: Entries reset
     entry:
         notice:
             entry_already_saved: 'Wpis już został dodany %date%'
