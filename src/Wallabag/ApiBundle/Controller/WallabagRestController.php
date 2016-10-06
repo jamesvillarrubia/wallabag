@@ -481,6 +481,7 @@ class WallabagRestController extends FOSRestController
      * )
      *
      * @param Entry $entry
+     *
      * @return JsonResponse
      */
     public function getAnnotationsAction(Entry $entry)
@@ -489,8 +490,9 @@ class WallabagRestController extends FOSRestController
 
         $response = $this->forward('WallabagApiBundle:WallabagRest:getAnnotations',
             [
-                'entry' => $entry
+                'entry' => $entry,
             ]);
+
         return $response;
     }
 
@@ -498,7 +500,8 @@ class WallabagRestController extends FOSRestController
      * Creates a new annotation.
      *
      * @param Request $request
-     * @param Entry $entry
+     * @param Entry   $entry
+     *
      * @return JsonResponse
      * @ApiDoc(
      *      requirements={
@@ -507,7 +510,6 @@ class WallabagRestController extends FOSRestController
      *          {"name"="text", "dataType"="string", "required"=true, "description"=""},
      *      }
      * )
-     *
      */
     public function postAnnotationAction(Request $request, Entry $entry)
     {
@@ -516,8 +518,9 @@ class WallabagRestController extends FOSRestController
         $response = $this->forward('WallabagApiBundle:WallabagRest:postAnnotation',
             [
                 'request' => $request,
-                'entry' => $entry
+                'entry' => $entry,
             ]);
+
         return $response;
     }
 
@@ -533,7 +536,8 @@ class WallabagRestController extends FOSRestController
      * @ParamConverter("annotation", class="WallabagAnnotationBundle:Annotation")
      *
      * @param Annotation $annotation
-     * @param Request $request
+     * @param Request    $request
+     *
      * @return JsonResponse
      */
     public function putAnnotationAction(Annotation $annotation, Request $request)
@@ -543,8 +547,9 @@ class WallabagRestController extends FOSRestController
         $response = $this->forward('WallabagApiBundle:WallabagRest:putAnnotation',
             [
                 'annotation' => $annotation,
-                'request' => $request
+                'request' => $request,
             ]);
+
         return $response;
     }
 
@@ -560,6 +565,7 @@ class WallabagRestController extends FOSRestController
      * @ParamConverter("annotation", class="WallabagAnnotationBundle:Annotation")
      *
      * @param Annotation $annotation
+     *
      * @return JsonResponse
      */
     public function deleteAnnotationAction(Annotation $annotation)
@@ -570,6 +576,7 @@ class WallabagRestController extends FOSRestController
             [
                 'annotation' => $annotation,
             ]);
+
         return $response;
     }
 
