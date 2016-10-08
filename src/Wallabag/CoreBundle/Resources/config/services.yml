@@ -29,7 +29,7 @@ services:
         arguments:
             - "@doctrine"
 
-    wallabag_core.table_prefix_subscriber:
+    wallabag_core.subscriber.table_prefix:
         class: Wallabag\CoreBundle\Subscriber\TablePrefixSubscriber
         arguments:
             - "%database_table_prefix%"
@@ -87,17 +87,6 @@ services:
         factory: [ "@doctrine.orm.default_entity_manager", getRepository ]
         arguments:
             - WallabagCoreBundle:Tag
-
-    wallabag_core.listener.registration_confirmed:
-        class: Wallabag\CoreBundle\EventListener\RegistrationConfirmedListener
-        arguments:
-            - "@doctrine.orm.entity_manager"
-            - "%wallabag_core.theme%"
-            - "%wallabag_core.items_on_page%"
-            - "%wallabag_core.rss_limit%"
-            - "%wallabag_core.language%"
-        tags:
-            - { name: kernel.event_subscriber }
 
     wallabag_core.helper.entries_export:
         class: Wallabag\CoreBundle\Helper\EntriesExport
