@@ -249,7 +249,7 @@ class ConfigController extends Controller
                     $this->getDoctrine()->getRepository('WallabagAnnotationBundle:Annotation')->removeAllByUserId($this->getUser()->getId());
                 }
 
-                // manually remove tags first to avoid orphan tag
+                // manually remove tags to avoid orphan tag
                 $this->removeAllTagsByUserId($this->getUser()->getId());
 
                 $this->getDoctrine()
@@ -266,9 +266,9 @@ class ConfigController extends Controller
     }
 
     /**
-     * Remove all tags for a given user and cleanup orphan tags
+     * Remove all tags for a given user and cleanup orphan tags.
      *
-     * @param  int $userId
+     * @param int $userId
      */
     private function removeAllTagsByUserId($userId)
     {
@@ -282,6 +282,7 @@ class ConfigController extends Controller
             ->getRepository('WallabagCoreBundle:Entry')
             ->removeTags($userId, $tags);
 
+        // cleanup orphan tags
         $em = $this->getDoctrine()->getManager();
 
         foreach ($tags as $tag) {
