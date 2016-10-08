@@ -247,8 +247,10 @@ class ConfigController extends Controller
                 // otherwise they won't be removed ...
                 if ($this->get('doctrine')->getConnection()->getDriver() instanceof \Doctrine\DBAL\Driver\PDOSqlite\Driver) {
                     $this->getDoctrine()->getRepository('WallabagAnnotationBundle:Annotation')->removeAllByUserId($this->getUser()->getId());
-                    $this->removeAllTagsByUserId($this->getUser()->getId());
                 }
+
+                // manually remove tags first to avoid orphan tag
+                $this->removeAllTagsByUserId($this->getUser()->getId());
 
                 $this->getDoctrine()
                     ->getRepository('WallabagCoreBundle:Entry')
@@ -264,7 +266,7 @@ class ConfigController extends Controller
     }
 
     /**
-     * Remove all tags for a given user.
+     * Remove all tags for a given user and cleanup orphan tags
      *
      * @param  int $userId
      */
@@ -279,6 +281,16 @@ class ConfigController extends Controller
         $this->getDoctrine()
             ->getRepository('WallabagCoreBundle:Entry')
             ->removeTags($userId, $tags);
+
+        $em = $this->getDoctrine()->getManager();
+
+        foreach ($tags as $tag) {
+            if (count($tag->getEntries()) === 0) {
+                $em->remove($tag);
+            }
+        }
+
+        $em->flush();
     }
 
     /**
